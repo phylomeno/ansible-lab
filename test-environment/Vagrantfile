@@ -14,6 +14,7 @@ Vagrant.configure("2") do |config|
         subconfig.vm.box = UBUNTU_IMAGE
         subconfig.vm.hostname = "ansible-master"
         subconfig.vm.network :private_network, ip: "10.0.0.10"
+        subconfig.vm.synced_folder "../ansible", "/opt/ansible"
     end
 
     (1..3).each do |i|     
