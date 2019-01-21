@@ -1,2 +1,2 @@
-test-environment/.vagrant/*
+test-environment/.vagrant/
 test-environment/*.log
