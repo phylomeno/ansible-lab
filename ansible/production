@@ -1,0 +1,10 @@
+[all]
+ubuntu-node1 ansible_python_interpreter=/usr/bin/python3
+ubuntu-node2 ansible_python_interpreter=/usr/bin/python3
+ubuntu-node3 ansible_python_interpreter=/usr/bin/python3
+centos-node1
+centos-node2
+centos-node3
+debian-node1
+debian-node2
+debian-node3
