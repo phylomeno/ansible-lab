@@ -1,2 +1,4 @@
 test-environment/.vagrant/
 test-environment/*.log
+.idea
+*.retry
