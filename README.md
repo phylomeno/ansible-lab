@@ -55,4 +55,28 @@ The command will ask for the ssh password which is `vagrant`. After entering thi
 In this experiment we want to add an SSH key to the authorized_keys of each server. Let us first generate some ssh keys.
 
     ssh-keygen
+    ansible-playbook -i production distribute-ssh-key.yml -k
+   
+After this step you should be able to perform your Ansible commands without providing an SSH command.
+
+    ansible -i production all -m ping
+   
+Interesting to see as well that Ansible modules behave idempotent. Performing the same step again should have no effect.
+
     ansible-playbook -i production distribute-ssh-key.yml
+    
+# Experiment 2: Install open-vm-tools
+
+    ansible-playbook -i production install-vmware-tools.yml
+    
+# Experiment 3: Facts gathering
+
+To see what facts are available for a certain host use the following command:
+
+    ansible -i production -m setup ubuntu-node1
+    
+To collect certain facts for all hosts use the following
+
+    ansible -i production -a 'filter=ansible_memtotal_mb' -m setup all
+    ansible -i production -a 'filter=ansible_kernel' -m setup all
+
