@@ -51,7 +51,11 @@ While still logged into ansible-master perform the following commands to ensure 
     
 The command will ask for the ssh password which is `vagrant`. After entering this Ansible will perform an Ansible-ping with all nodes.
 
-## Experiment 1: Distribute SSH Keys
+## Lab Experiments
+
+Following some simple experiments to try out and investigate in order to get started.
+
+### Experiment 1: Distribute SSH Keys
 In this experiment we want to add an SSH key to the authorized_keys of each server. Let us first generate some ssh keys.
 
     ssh-keygen
@@ -65,11 +69,11 @@ Interesting to see as well that Ansible modules behave idempotent. Performing th
 
     ansible-playbook -i production distribute-ssh-key.yml
     
-# Experiment 2: Install open-vm-tools
+### Experiment 2: Install open-vm-tools
 
     ansible-playbook -i production install-vmware-tools.yml
     
-# Experiment 3: Facts gathering
+### Experiment 3: Facts gathering
 
 To see what facts are available for a certain host use the following command:
 
