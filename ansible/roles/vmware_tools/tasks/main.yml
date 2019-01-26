@@ -3,12 +3,14 @@
   when: ansible_virtualization_type == "virtualbox"
   become: true
 
-- name: centos | starting and enabling open-vm-tools
-  service: name=vmtoolsd.service state=restarted enabled=yes
-  when: ansible_os_family == "RedHat" and ansible_virtualization_type == "virtualbox"
+- name: load os dependent variables 
+  include_vars: "{{ item }}" 
+  with_first_found:
+       - os_{{ ansible_facts['os_family'] }}.yml
+       - os_default.yml
+ 
+- name: start and enable {{ vmtools_service_name }} service 
+  service: name={{ vmtools_service_name }} state=restarted enabled=yes
   become: true
-
-- name: debian-ubuntu | starting and enabling open-vm-tools
-  service: name=open-vm-tools.service state=restarted enabled=yes
-  when: ansible_os_family == "Debian" and ansible_virtualization_type == "virtualbox"
-  become: true 
+  when: ansible_virtualization_type == "virtualbox"
+ 
